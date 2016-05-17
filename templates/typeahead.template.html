@@ -1,0 +1,16 @@
+<input type="text" name="search-input" id="search-input" ng-model="searchInput"
+       ng-model-options="{ debounce: 1000 }" ng-change="productSearch()" ng-blur="reset(true)"
+       ng-focus="productSearch()" placeholder="Search by Keyword, Product or Brand...">
+<div class="dropdown" ng-if="results.length">
+    <section ng-repeat="section in results">
+        <h4>{{section.heading}}</h4>
+
+        <div ng-repeat="result in section.results track by $index">
+            <p ng-bind-html="result"></p>
+        </div>
+    </section>
+    <p>See all results for '{{searchInput}}'</p>
+</div>
+<div class="dropdown" ng-if="!results.length && searchInput">
+    <p>No results found for '{{searchInput}}'</p>
+</div>
